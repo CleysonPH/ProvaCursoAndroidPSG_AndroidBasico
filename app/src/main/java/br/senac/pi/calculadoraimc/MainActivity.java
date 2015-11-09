@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
@@ -39,26 +41,33 @@ public class MainActivity extends AppCompatActivity {
 
                 double IMC = peso / (altura * altura);
 
-                txtResultado.setText(getResources().getString(R.string.txt_resultado) + " " + decimal.format(IMC));
+                txtResultado.setText(getString(R.string.txt_resultado) + " " + decimal.format(IMC));
 
                 String situacao = "";
-
+                String toast = "";
 
                 if(IMC <= 18.5){
-                    situacao = getResources().getString(R.string.abaixo_peso);
+                    situacao = getString(R.string.abaixo_peso);
+                    toast = getString(R.string.toast_anormal);
                 } else if(IMC <= 24.9){
-                    situacao = getResources().getString(R.string.peso_ideal);
+                    situacao = getString(R.string.peso_ideal);
+                    toast = getString(R.string.toast_ideal);
                 } else if(IMC <= 29.9){
-                    situacao = getResources().getString(R.string.acima_peso);
+                    situacao = getString(R.string.acima_peso);
+                    toast = getString(R.string.toast_anormal);
                 } else if(IMC <= 34.9){
-                    situacao = getResources().getString(R.string.obesidade_I);
+                    situacao = getString(R.string.obesidade_I);
+                    toast = getString(R.string.toast_anormal);
                 } else if(IMC <= 39.9){
-                    situacao = getResources().getString(R.string.obesidade_II);
+                    situacao = getString(R.string.obesidade_II);
+                    toast = getString(R.string.toast_anormal);
                 } else {
-                    situacao = getResources().getString(R.string.obesidade_III);
+                    situacao = getString(R.string.obesidade_III);
+                    toast = getString(R.string.toast_anormal);
                 }
 
                 txtSituacao.setText(situacao);
+                Toast.makeText(MainActivity.this, toast, Toast.LENGTH_LONG).show();
             }
         };
     }
